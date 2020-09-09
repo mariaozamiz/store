@@ -4,7 +4,11 @@ const getDataFromApi = () => {
     )
         .then((response) => response.json())
         .then((data) => {
-            return data.cart.items;
+            const items = data.cart.items.map((item, index) => {
+                item.id = 'id-' + index;
+                return item;
+            });
+            return items;
         })
         .catch((err) => {
             console.error('Se ha producido un error:', err);

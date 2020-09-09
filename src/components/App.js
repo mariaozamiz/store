@@ -13,12 +13,27 @@ function App() {
         });
     }, []);
 
+    const renderProductDetail = () => {
+        const product = products[1];
+        if (product) {
+            return (
+                <ProductDetail
+                    name={product.name}
+                    imageUrl={product.imageUrl}
+                    price={product.price}
+                    description={product.description}
+                    sizes={product.sizes}
+                />
+            );
+        }
+    };
+
     return (
         <div>
             <h1 className="title--big">Catálogo de camisetas</h1>
             <Filters />
             <ProductList products={products} />
-            <ProductDetail />
+            {renderProductDetail()}
         </div>
     );
 }
