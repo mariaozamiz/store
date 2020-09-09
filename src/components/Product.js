@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Product(props) {
     return (
@@ -6,7 +7,9 @@ function Product(props) {
             <img src={props.imageUrl} className="card__img" alt={props.name} />
             <h3 className="card__title">{props.name}</h3>
             <p className="card__description">{props.price} €</p>
-            <button className="card__btn">Ver detalle del producto</button>
+            <Link to={`/product/${props.id}`} className="card__btn">
+                Ver detalle del producto
+            </Link>
         </article>
     );
 }

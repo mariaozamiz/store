@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Filters from './Filters';
 import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
@@ -13,8 +14,11 @@ function App() {
         });
     }, []);
 
-    const renderProductDetail = () => {
-        const product = products[1];
+    const renderProductDetail = (props) => {
+        const routeProductId = props.match.params.productId;
+        const product = products.find(
+            (product) => product.id === routeProductId
+        );
         if (product) {
             return (
                 <ProductDetail
@@ -25,6 +29,8 @@ function App() {
                     sizes={product.sizes}
                 />
             );
+        } else {
+            return <p>Producto no encontrado</p>;
         }
     };
 
@@ -33,7 +39,12 @@ function App() {
             <h1 className="title--big">Catálogo de camisetas</h1>
             <Filters />
             <ProductList products={products} />
-            {renderProductDetail()}
+            <Switch>
+                <Route
+                    path="/product/:productId"
+                    render={renderProductDetail}
+                />
+            </Switch>
         </div>
     );
 }
