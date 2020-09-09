@@ -18,7 +18,7 @@ function App() {
         <div>
             <h1 className="title--big">Catálogo de camisetas</h1>
             <Filters />
-            <section className="js-products cards">
+            <section className="cards">
                 <Product />
                 <Product />
                 <Product />
