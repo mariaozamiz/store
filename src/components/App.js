@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Filters from './Filters';
 import ProductList from './ProductList';
-import '../stylesheets/App.css';
+import ProductDetail from './ProductDetail';
 import getDataFromApi from '../services/api';
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
             <h1 className="title--big">Catálogo de camisetas</h1>
             <Filters />
             <ProductList products={products} />
+            <ProductDetail />
         </div>
     );
 }
