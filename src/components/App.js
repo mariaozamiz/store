@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Filters from './Filters';
-import Product from './Product';
-import ProductDetail from './ProductDetail';
+import ProductList from './ProductList';
 import '../stylesheets/App.css';
 import getDataFromApi from '../services/api';
 
@@ -18,11 +17,7 @@ function App() {
         <div>
             <h1 className="title--big">Catálogo de camisetas</h1>
             <Filters />
-            <section className="cards">
-                <Product />
-                <Product />
-                <Product />
-            </section>
+            <ProductList products={products} />
         </div>
     );
 }
