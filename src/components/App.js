@@ -8,7 +8,7 @@ import getDataFromApi from '../services/api';
 function App() {
     const [products, setProducts] = useState([]);
     const [filterName, setFilterName] = useState('');
-    const [filterPrice, setFilterPrice] = useState(5);
+    const [filterPrice, setFilterPrice] = useState(10);
 
     useEffect(() => {
         getDataFromApi().then((data) => {
@@ -57,7 +57,11 @@ function App() {
     return (
         <div>
             <h1 className="title--big">Catálogo de camisetas</h1>
-            <Filters filterName={filterName} handleFilters={handleFilters} />
+            <Filters
+                filterName={filterName}
+                filterPrice={filterPrice}
+                handleFilters={handleFilters}
+            />
             <ProductList products={renderFilterProducts()} />
             <Switch>
                 <Route

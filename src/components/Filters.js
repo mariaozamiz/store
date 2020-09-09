@@ -31,15 +31,16 @@ function Filters(props) {
             </div>
             <div>
                 <label htmlFor="filterPrice" className="form__label">
-                    Filtrar por precio menor que
+                    Filtrar por precio mayor que
                 </label>
                 <select
                     className="form__input-text"
                     id="filterPrice"
                     onChange={handleFilterPrice}
+                    value={props.filterPrice}
                 >
-                    <option value="5">5€</option>
                     <option value="10">10€</option>
+                    <option value="14">14€</option>
                     <option value="15">15€</option>
                 </select>
             </div>
