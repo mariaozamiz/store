@@ -7,12 +7,22 @@ import getDataFromApi from '../services/api';
 
 function App() {
     const [products, setProducts] = useState([]);
+    const [filterName, setFilterName] = useState('');
+    const [filterPrice, setFilterPrice] = useState(5);
 
     useEffect(() => {
         getDataFromApi().then((data) => {
             setProducts(data);
         });
     }, []);
+
+    const handleFilters = (data) => {
+        if (data.key === 'filterName') {
+            setFilterName(data.value);
+        } else if (data.key === 'filterPrice') {
+            setFilterPrice(data.value);
+        }
+    };
 
     const renderProductDetail = (props) => {
         const routeProductId = props.match.params.productId;
@@ -34,11 +44,21 @@ function App() {
         }
     };
 
+    const renderFilterProducts = () => {
+        return products
+            .filter((product) => {
+                return product.name.includes(filterName);
+            })
+            .filter((product) => {
+                return product.price > filterPrice;
+            });
+    };
+
     return (
         <div>
             <h1 className="title--big">Catálogo de camisetas</h1>
-            <Filters />
-            <ProductList products={products} />
+            <Filters filterName={filterName} handleFilters={handleFilters} />
+            <ProductList products={renderFilterProducts()} />
             <Switch>
                 <Route
                     path="/product/:productId"
